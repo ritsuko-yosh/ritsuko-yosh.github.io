@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add("js")</script>
+<title>PayPal 12 Quarter Forecast | Case Study | Ritsuko Yoshida</title>
+<meta name="description" content="A forward view of PayPal&#x27;s performance built from SEC filings and macroeconomic data, using Holt-Winters forecasting and sensitivity analysis.">
+<meta name="author" content="Ritsuko Yoshida">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ritsuko-yosh.github.io/projects/paypal-revenue-forecast.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PayPal 12 Quarter Forecast | Case Study | Ritsuko Yoshida">
+<meta property="og:description" content="A forward view of PayPal&#x27;s performance built from SEC filings and macroeconomic data, using Holt-Winters forecasting and sensitivity analysis.">
+<meta property="og:url" content="https://ritsuko-yosh.github.io/projects/paypal-revenue-forecast.html">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0f1f38">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&amp;display=swap">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<script defer src="../assets/js/main.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Ritsuko Yoshida, home">
+      <span class="brand-mark" aria-hidden="true">RY</span>
+      <span class="brand-name">Ritsuko Yoshida</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul><li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../projects.html" aria-current="page">Projects</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../skills.html">Skills</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../contact.html">Contact</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero cs-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../projects.html">Projects</a> <span aria-hidden="true">/</span> <span>PayPal 12 Quarter Forecast</span></nav>
+  <ul class="chips"><li>Finance</li><li>Analytics</li></ul>
+  <h1>PayPal 12 Quarter Forecast</h1>
+  <p class="lead">A forward view of PayPal's performance built from SEC filings and macroeconomic data, using Holt-Winters forecasting and sensitivity analysis.</p>
+  <dl class="cs-meta">
+    <div><dt>Type</dt><dd>Academic project</dd></div>
+    <div><dt>When</dt><dd>2025</dd></div>
+    <div><dt>Team</dt><dd>Academic project</dd></div>
+  </dl>
+  <ul class="facts"><li class="fact"><span class="fact-v">12 quarters</span><span class="fact-l">Forecast horizon</span><span class="kind k-ctx">Context</span></li><li class="fact"><span class="fact-v">2.89%</span><span class="fact-l">Reported MAPE; validation period not documented here</span><span class="kind k-metric">Model metric</span></li></ul>
+</div></section>
+<section class="band"><div class="wrap cs-layout">
+  <aside class="cs-toc" aria-label="On this page"><p class="side-h">On this page</p><ol><li><a href="#problem">The business problem</a></li><li><a href="#why">Why it mattered</a></li><li><a href="#role">My role</a></li><li><a href="#data">Data and tools</a></li><li><a href="#process">How I approached it</a></li><li><a href="#findings">Findings</a></li><li><a href="#implications">Business implications</a></li><li><a href="#limitations">Limitations</a></li><li><a href="#shows">What this shows</a></li></ol></aside>
+  <article class="cs-body prose">
+    <section id="problem" class="cs-sec"><h2>The business problem</h2><p>Project PayPal's financial performance 12 quarters ahead, and test how much the forecast moves when key assumptions change.</p></section><section id="why" class="cs-sec"><h2>Why it mattered</h2><p>Forecasts feed budgets, hiring plans, and valuation. A single number with no sense of its range can push a whole plan off course.</p></section><section id="role" class="cs-sec"><h2>My role</h2><p>I analyzed historical financial information, explored seasonality using time-series regression, and worked with Holt-Winters forecasting and sensitivity analysis. The precise division of team responsibilities should be verified against the original report.</p></section><section id="data" class="cs-sec"><h2>Data and tools</h2><ul><li>PayPal financial disclosures from SEC filings</li><li>Financial data obtained from SEC filings and PitchBook</li><li>Forecasting, regression, and financial statement analysis; software details to be confirmed from project files</li></ul></section><section id="process" class="cs-sec"><h2>How I approached it</h2><ul><li><strong>Read the filings first</strong> to understand what drives PayPal's results.</li><li><strong>Built a Holt-Winters model</strong>, which tracks level, trend, and seasonality.</li><li><strong>Measured error</strong> with mean absolute percentage error (MAPE).</li><li><strong>Ran sensitivity analysis</strong> to see how the forecast behaves as assumptions change.</li></ul></section><section id="findings" class="cs-sec"><h2>Findings</h2><p>The project reported a MAPE of 2.89%. The testing period and whether this was in-sample or out-of-sample have not been independently verified.</p>
+<p>Sensitivity analysis explored how changes in financial assumptions could affect forecast outcomes; numerical scenarios are not reproduced without the original model.</p></section><section id="implications" class="cs-sec"><h2>Business implications</h2><p>A tested forecast with a sensitivity range gives planners a base case plus a sense of how wrong it could be.</p></section><section id="limitations" class="cs-sec"><h2>Limitations</h2><ul><li>Holt-Winters projects past patterns forward and cannot anticipate structural changes such as acquisitions, pricing shifts, or a downturn.</li><li>Uncertainty grows with the horizon. Quarter 12 is far less reliable than quarter 1.</li><li>If the 2.89% MAPE was measured on the same data used to fit the model, true out of sample error is likely higher.</li></ul></section><section id="shows" class="cs-sec"><h2>What this shows</h2><p>Time series forecasting grounded in financial filings, judging a model on measured error, and testing it under changing assumptions.</p></section>
+    
+    <section class="cs-sec"><h2>Skills and keywords</h2><ul class="tags"><li>Financial Forecasting</li><li>Holt-Winters</li><li>Sensitivity Analysis</li><li>Financial Statement Analysis</li><li>SEC Filings</li></ul></section>
+  </article>
+</div></section>
+<nav class="wrap pager" aria-label="More case studies">
+  <a href="../projects/lisc-digital-growth-accelerator.html"><span class="muted">Previous</span>LISC Digital Growth Accelerator</a>
+  <a href="../projects/hospital-performance-analytics.html" class="next"><span class="muted">Next</span>Hospital Performance Analytics</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-name">Ritsuko Yoshida</p>
+      <p class="muted">Business analytics and finance. Boston, MA.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a class="" href="mailto:ritsukoyoshida77@gmail.com">Email</a></li>
+      <li><a class="" href="https://www.linkedin.com/in/ritsuko-yoshida77/" rel="noopener" target="_blank">LinkedIn</a></li>
+      <li><a class="" href="https://github.com/ritsuko-yosh" rel="noopener" target="_blank">GitHub</a></li>
+      <li><a href="../resume.html">Resume</a></li>
+    </ul>
+  </div>
+  <div class="wrap footer-note muted">
+    <p>Figures on this site are labeled as results, model metrics, projections, or simulations. Academic and simulated work is marked as such.</p>
+  </div>
+</footer>
+</body>
+</html>

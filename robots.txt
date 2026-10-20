@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ritsuko-yosh.github.io/sitemap.xml
