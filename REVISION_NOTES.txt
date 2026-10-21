@@ -1,0 +1,1 @@
+Soft baby v2: original swaddled seal and panda SVGs, smaller portrait, explicitly constrained mascot sizing, professional serif tagline, gentle CSS motion. Keep the entire folder structure when uploading. This version is not visually browser-verified.

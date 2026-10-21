@@ -396,3 +396,40 @@ h1,h2,h3 { letter-spacing: -.032em; }
 @keyframes sealHello{0%,15%,85%,100%{transform:translateY(9px) rotate(-8deg)}35%,55%{transform:translateY(-13px) rotate(8deg)}45%{transform:translateY(-17px) rotate(4deg)}}
 @keyframes pandaHello{0%,15%,65%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-10px) rotate(-5deg)}35%{transform:translateY(-13px) rotate(6deg)}45%{transform:translateY(-5px) rotate(-3deg)}}
 @media(prefers-reduced-motion:reduce){.kawaii-art .seal-peek,.kawaii-art .panda-study{animation:none!important}}
+
+/* Baby-soft revision: limit art sizes and keep portrait compact. */
+.hero-kawaii{padding:56px 0 26px}
+.kawaii-grid{grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr);gap:clamp(20px,4vw,65px);min-height:430px}
+.kawaii-art{min-height:410px;max-width:450px;width:100%;margin-inline:auto}
+.kawaii-photo{inset:12% 14% 12% 16%;border-radius:47% 53% 45% 55% / 44% 40% 60% 56%}
+.portrait-blob{inset:10% 8% 9% 11%}
+.kawaii-art img.mascot{position:absolute!important;height:auto!important;max-width:none!important;object-fit:contain!important}
+.kawaii-art .seal-peek{width:90px!important;top:8%;left:3%;z-index:5}
+.kawaii-art .panda-study{width:106px!important;bottom:3%;right:0%;z-index:5}
+.kawaii-bottom img.sleepy-seal{position:absolute!important;width:68px!important;height:auto!important;max-width:68px!important;left:3%;bottom:7px}
+.kawaii-bottom{min-height:95px}
+.kawaii-tagline{font-family:Georgia,'Times New Roman',serif!important;font-style:normal!important;font-weight:400;font-size:clamp(1.4rem,2.35vw,2.35rem);color:#806f83}
+.kawaii-tagline em{font-style:normal!important}
+@keyframes sealHello{0%,20%,85%,100%{transform:translateY(7px) rotate(-4deg)}35%,50%{transform:translateY(-8px) rotate(5deg)}}
+@keyframes pandaHello{0%,22%,65%,100%{transform:translateY(0) rotate(0)}34%{transform:translateY(-7px) rotate(-4deg)}46%{transform:translateY(-3px) rotate(5deg)}}
+@media(max-width:820px){.kawaii-grid{grid-template-columns:1fr}.kawaii-art{min-height:340px;max-width:380px}.kawaii-art .seal-peek{width:76px!important}.kawaii-art .panda-study{width:90px!important}.kawaii-bottom img.sleepy-seal{display:none}}
+@media(max-width:420px){.kawaii-art{min-height:295px;max-width:330px}}
+@media(prefers-reduced-motion:reduce){.kawaii-art .seal-peek,.kawaii-art .panda-study{animation:none!important}}
+
+/* BELLE: Original hand-drawn artwork supplied by Ritsuko, not generated or traced. */
+.kawaii-art .belle-portrait{position:absolute!important;z-index:8;bottom:3%;right:-1%;width:clamp(70px,8vw,104px)!important;height:auto!important;max-width:none!important;object-fit:contain;filter:drop-shadow(0 6px 6px #bfa2a522);animation:belleGreet 7s ease-in-out infinite;transform-origin:50% 90%;pointer-events:none}
+.belle-trail{background:#fffbf7;padding:0 0 15px;overflow:hidden}
+.belle-trail-inner{position:relative;height:120px;border-bottom:1px dashed #eadbe1;overflow:hidden}
+.belle-trail-caption{position:absolute;left:8px;top:8px;font-size:.75rem;color:#a08a94;letter-spacing:.02em}
+.belle-trail-caption span{color:#ca819e}
+.belle-walk{position:absolute;left:0;bottom:3px;width:83px;height:95px;z-index:2;animation:belleTravel 18s linear infinite;will-change:transform}
+.belle-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px #b7a49a22)}
+.belle-frame-a{animation:belleFrameA .75s steps(1,end) infinite}
+.belle-frame-b{animation:belleFrameB .75s steps(1,end) infinite}
+.belle-trail-dashes{position:absolute;right:5%;bottom:13px;width:40%;border-bottom:1px dashed #edd9df}
+@keyframes belleFrameA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes belleFrameB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+@keyframes belleTravel{0%{transform:translateX(-110px)}12%{transform:translateX(6vw)}26%{transform:translateX(17vw)}32%,41%{transform:translateX(21vw)}58%{transform:translateX(43vw)}65%,73%{transform:translateX(52vw)}100%{transform:translateX(105vw)}}
+@keyframes belleGreet{0%,18%,80%,100%{transform:translateY(0)}28%,34%{transform:translateY(-6px)}45%,55%{transform:translateY(0)}64%{transform:translateY(-3px)}}
+@media(max-width:820px){.kawaii-art .belle-portrait{width:82px!important;right:1%;bottom:4%}.belle-trail-inner{height:108px}.belle-walk{width:68px;height:85px}}
+@media(prefers-reduced-motion:reduce){.kawaii-art .belle-portrait,.belle-walk,.belle-frame{animation:none!important}.belle-frame-b{display:none}}
