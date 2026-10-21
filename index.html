@@ -41,11 +41,11 @@
 </header>
 <main id="main">
 
-<section class="hero">
+<section class="hero hero-editorial">
   <div class="wrap hero-grid">
     <div class="hero-main">
-      <p class="eyebrow">Business Analytics &amp; Finance</p>
-      <h1>Ritsuko Yoshida</h1>
+      <p class="eyebrow hero-eyebrow"><span class="status-dot"></span> Business Analytics &amp; Finance</p>
+      <h1>Ritsuko <em>Yoshida.</em></h1>
       <p class="hero-headline">I build forecasts and models, then turn them into decisions people can act on.</p>
       <p class="hero-intro">I am a Master of Finance student at Hult International Business School in Boston. I finished my BBA in Business Analytics with a 3.97 GPA. My work so far spans revenue forecasting, hospital performance data, product commercialization, and a live client consulting engagement.</p>
       <div class="cta-row">
@@ -54,15 +54,12 @@
         <a class="btn btn-link" href="contact.html">Contact</a>
       </div>
     </div>
-    <aside class="hero-side" aria-label="At a glance">
-      <h2 class="side-h">Target roles</h2>
-      <ul class="target-list"><li>Business Analytics and BI</li><li>Financial Analysis and Forecasting</li><li>Strategy and Consulting</li><li>Corporate and Strategic Finance</li></ul>
-      <h2 class="side-h">Currently</h2>
-      <p>Master of Finance, Hult International Business School, Boston</p>
-      <h2 class="side-h">Open to</h2>
-      <p>Interested in business analytics, finance, and strategy opportunities</p>
-      <h2 class="side-h">Languages</h2>
-      <p>Japanese (native), English, French (DELF B1)</p>
+    <aside class="hero-portrait" aria-label="Portrait and professional focus">
+      <div class="portrait-frame">
+        <img class="portrait-image" src="assets/images/portrait.jpg" alt="Portrait of Ritsuko Yoshida" onerror="this.hidden=true;this.parentElement.classList.add('portrait-missing')">
+        <div class="portrait-fallback" aria-hidden="true"><span>RY</span><small>ANALYTICS · FINANCE · STRATEGY</small></div>
+      </div>
+      <div class="portrait-caption"><span class="caption-rule"></span> Based in Boston, MA <span class="caption-star">✦</span> Open to analytical opportunities</div>
     </aside>
   </div>
   <div class="wrap">
@@ -82,6 +79,7 @@
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Selected work</p><h2>Featured case studies</h2><p class="lead-sm">Each case study covers the problem, my role, the method, the findings, and the limits.</p></div>
     <div class="card-grid card-grid-2"><article class="card reveal" data-categories="Strategy">
+  <div class="card-visual"><img src="assets/images/lisc-digital-growth-accelerator.svg" alt="" loading="lazy"></div>
   <ul class="chips" aria-label="Categories"><li>Strategy</li></ul>
   <h3 class="card-title"><a href="projects/lisc-digital-growth-accelerator.html">LISC Digital Growth Accelerator</a></h3>
   <p class="card-text">A tiered membership strategy for a live Boston client. Placed 3rd of 36 teams for Best Action Plan to Drive Sales.</p>
@@ -89,6 +87,7 @@
   <p class="card-evidence">Live client consulting competition</p>
   <span class="card-cta" aria-hidden="true">Read case study</span>
 </article><article class="card reveal" data-categories="Finance|Analytics">
+  <div class="card-visual"><img src="assets/images/paypal-revenue-forecast.svg" alt="" loading="lazy"></div>
   <ul class="chips" aria-label="Categories"><li>Finance</li><li>Analytics</li></ul>
   <h3 class="card-title"><a href="projects/paypal-revenue-forecast.html">PayPal 12 Quarter Forecast</a></h3>
   <p class="card-text">A forward view of PayPal's performance built from SEC filings and macroeconomic data, using Holt-Winters forecasting and sensitivity analysis.</p>
@@ -96,6 +95,7 @@
   <p class="card-evidence">Academic project</p>
   <span class="card-cta" aria-hidden="true">Read case study</span>
 </article><article class="card reveal" data-categories="Analytics">
+  <div class="card-visual"><img src="assets/images/hospital-performance-analytics.svg" alt="" loading="lazy"></div>
   <ul class="chips" aria-label="Categories"><li>Analytics</li></ul>
   <h3 class="card-title"><a href="projects/hospital-performance-analytics.html">Hospital Performance Analytics</a></h3>
   <p class="card-text">Statistical analysis and PCA on more than 100,000 healthcare records to find what drives hospital performance and quality outcomes.</p>
@@ -103,6 +103,7 @@
   <p class="card-evidence">Academic project, Business Intelligence and Insights</p>
   <span class="card-cta" aria-hidden="true">Read case study</span>
 </article><article class="card reveal" data-categories="Strategy|Finance">
+  <div class="card-visual"><img src="assets/images/posture-mate-business-case.svg" alt="" loading="lazy"></div>
   <ul class="chips" aria-label="Categories"><li>Strategy</li><li>Finance</li></ul>
   <h3 class="card-title"><a href="projects/posture-mate-business-case.html">Posture Mate: Path to Market</a></h3>
   <p class="card-text">Testing whether a product concept could work commercially, through market research, competitor analysis, unit economics, and a three year financial outlook.</p>

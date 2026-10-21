@@ -1,0 +1,9 @@
+REDESIGNED PORTFOLIO - GITHUB PAGES
+
+Upload ALL CONTENTS of this site folder to the ROOT of your existing ritsuko-yosh.github.io repository, replacing files with the same names. Do not upload the outer site folder or the zip itself.
+
+Changes: editorial hero, elegant typography, navy/cream palette, subtle entrance motion, animated card hover, abstract project covers, optional real portrait. The cover illustrations are decorative and are NOT charts or evidence.
+
+To add a headshot: save your actual photo as assets/images/portrait.jpg, commit to GitHub, and reload. Without a photo, an RY monogram is displayed.
+
+The generated static site is ready to deploy with GitHub Pages main / (root). Content claims and project facts should still be personally verified before using it for applications.
