@@ -1,0 +1,9 @@
+ANIMATED PASTEL PORTFOLIO — Ritsuko Yoshida
+
+1. Unzip the package.
+2. Open the site folder.
+3. Upload the CONTENTS of site (not the site folder itself) to the root of your ritsuko-yosh.github.io GitHub repository, replacing matching files.
+4. Keep assets/images/portrait.jpg — it is your existing portrait.
+5. Wait for GitHub Pages to deploy, then hard-refresh the website.
+
+Animations are CSS-based (peeking seal, gently wiggling panda, breathing seal, twinkling flowers, and entrance reveals). Reduced-motion accessibility is supported. All other existing pages and case studies are preserved.
