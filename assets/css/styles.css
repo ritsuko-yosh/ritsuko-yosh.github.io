@@ -542,3 +542,7 @@ html[data-motion="paused"] .reveal { opacity: 1; transform: none; }
 .race-reflection-heading { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #775b72; margin: 22px 0 10px; }
 #beyond-the-numbers { scroll-margin-top: 100px; }
 @media (max-width: 700px) { .personal-race { grid-template-columns: 1fr; } }
+
+/* Medal-focused gallery cover; retain the original photo behind the link. */
+.achievement-race-photo { overflow: hidden; }
+.achievement-race-photo img { position: absolute; width: 370%; max-width: none; height: 370%; left: -126.9%; top: -210.6%; object-fit: fill; }
