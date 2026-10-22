@@ -530,3 +530,15 @@ html[data-motion="paused"] .reveal { opacity: 1; transform: none; }
 .distance-unit{display:block;font:.75rem var(--sans);text-transform:uppercase;letter-spacing:.15em}
 @media(max-width:950px){.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.achievement-grid{grid-template-columns:1fr;gap:24px}.achievement-copy{padding:22px}.achievement-filters{gap:8px}.achievement-filters button{font-size:.75rem;padding-inline:12px}}
+
+/* Real race-day photograph and reflection. Keep the full group photo visible. */
+.achievement-race-photo { padding: 0; background: #e9edf0; }
+.achievement-race-photo img { object-fit: contain; box-shadow: none; }
+.race-reflection { font-size: .88rem; line-height: 1.75; color: var(--charcoal); border-left: 2px solid #cab0bf; padding-left: 14px; margin-top: 6px; }
+.personal-race { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); max-width: none; align-items: start; }
+.race-photo { margin: 0; }
+.race-photo img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.race-photo figcaption { margin-top: 10px; font-size: .75rem; color: var(--muted); }
+.race-reflection-heading { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #775b72; margin: 22px 0 10px; }
+#beyond-the-numbers { scroll-margin-top: 100px; }
+@media (max-width: 700px) { .personal-race { grid-template-columns: 1fr; } }
