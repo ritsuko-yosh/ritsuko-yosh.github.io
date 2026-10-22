@@ -1,0 +1,45 @@
+/* Belle SVG model and crayon texture supplied by Ritsuko. */
+.belle-svg{width:100%;height:100%}
+.belle-trail-dashes{position:absolute;right:5%;bottom:13px;width:40%;border-bottom:1px dashed #edd9df}
+.belle-svg{display:block;overflow:visible}
+.belle-svg g{transform-box:fill-box;will-change:transform}
+.belle-svg .b-bob{transform-origin:50% 100%}
+.belle-svg .b-head{transform-origin:50% 100%}
+.belle-svg .b-leg{transform-origin:50% 20%}
+.belle-svg .b-arm-l{transform-origin:95% 30%}
+.belle-svg .b-arm-r{transform-origin:5% 30%}
+.belle-svg .b-ear-l{transform-origin:80% 10%}
+.belle-svg .b-ear-r{transform-origin:20% 10%}
+.belle-svg .b-tail{transform-origin:0% 100%;animation:bWag .9s ease-in-out infinite alternate}
+.belle-svg .b-eyes{transform-origin:50% 50%;animation:bBlink 5s ease-in-out infinite}
+.belle-walking .b-bob{animation:bWaddle 1.1s ease-in-out infinite}
+.belle-walking .b-leg-l{animation:bLift 1.1s ease-in-out infinite}
+.belle-walking .b-leg-r{animation:bLift 1.1s ease-in-out infinite;animation-delay:-.55s}
+.belle-walking .b-arm-l{animation:bArmL 1.1s ease-in-out infinite}
+.belle-walking .b-arm-r{animation:bArmR 1.1s ease-in-out infinite}
+.belle-walking .b-ear-l{animation:bEarL 1.1s ease-in-out infinite}
+.belle-walking .b-ear-r{animation:bEarR 1.1s ease-in-out infinite}
+.belle-idle .b-bob{animation:bBreathe 3.6s ease-in-out infinite}
+.belle-idle .b-head{animation:bTilt 6s ease-in-out infinite}
+.belle-idle .b-arm-r{animation:bWave 6s ease-in-out infinite}
+.belle-idle .b-ear-l{animation:bEarL 3.6s ease-in-out infinite}
+.belle-idle .b-ear-r{animation:bEarR 3.6s ease-in-out infinite}
+@keyframes bWaddle{0%,100%{transform:rotate(-3deg) translateY(0)}25%,75%{transform:rotate(0) translateY(-3px)}50%{transform:rotate(3deg) translateY(0)}}
+@keyframes bLift{0%,50%,100%{transform:translateY(0)}25%{transform:translateY(-4px)}}
+@keyframes bArmL{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}}
+@keyframes bArmR{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(6deg)}}
+@keyframes bEarL{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(5deg)}}
+@keyframes bEarR{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(2deg)}}
+@keyframes bWag{from{transform:rotate(-10deg)}to{transform:rotate(12deg)}}
+@keyframes bBlink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.15)}}
+@keyframes bBreathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+@keyframes bTilt{0%,45%,100%{transform:rotate(0)}58%,85%{transform:rotate(-6deg)}}
+@keyframes bWave{0%,50%,100%{transform:rotate(0)}58%{transform:rotate(-35deg)}66%{transform:rotate(-15deg)}74%{transform:rotate(-35deg)}82%{transform:rotate(-15deg)}92%{transform:rotate(0)}}
+
+/* Fit the supplied model into the existing homepage layout. */
+.kawaii-art .belle-portrait { overflow: visible; }
+.belle-walk .belle-svg { position: absolute; right: 0; bottom: 0; width: 74px; height: 82px; }
+@media (max-width: 520px) { .belle-walk .belle-svg { width: 66px; height: 74px; } }
+@media (prefers-reduced-motion: reduce) {
+ .belle-svg, .belle-svg g { animation: none !important; }
+}
