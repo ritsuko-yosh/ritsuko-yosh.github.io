@@ -53,7 +53,20 @@
       document.querySelector(".achievement-status").textContent = count +
         (count === 1 ? " achievement" : " achievements") +
         (category === "all" ? "" : " · " + button.textContent);
+      try { history.replaceState(null, "", location.pathname + location.search + (category === "all" ? "" : "#" + category)); } catch (e) {}
     });
+    function openGalleryCategory() {
+      var category = location.hash.slice(1);
+      var button = Array.prototype.find.call(galleryFilters.querySelectorAll("button"), function (item) {
+        return item.getAttribute("data-achievement-filter") === category;
+      });
+      if (button) {
+        button.click();
+        galleryFilters.scrollIntoView({ block: "center", behavior: "instant" });
+      }
+    }
+    openGalleryCategory();
+    window.addEventListener("hashchange", openGalleryCategory);
   }
 
   // Mobile menu
