@@ -9,7 +9,7 @@
   if (!svgs.length) return;
 
   var ACTIONS = {
-    hop: 1.0, sniff: 1.8, wiggle: 1.5, wave: 1.7, nap: 5.5, heart: 1.0
+    type: 2.8, hop: 1.0, sniff: 1.8, wiggle: 1.5, wave: 1.7, nap: 5.5, heart: 1.0
   };
   var WALK_STOPS = ['sniff', 'hop', 'wiggle', 'wave'];
   var IDLE_PICKS = ['wave', 'hop', 'wiggle', 'sniff', 'nap', 'look', 'look'];
@@ -50,7 +50,7 @@
     this.nextLook = rand(1.5, 3.5);
     this.nextBlink = rand(1, 4); this.blink = 0;
     this.action = null; this.actionT = 0;
-    this.nextAction = this.walking ? rand(5, 8) : rand(2.5, 4.5);
+    this.nextAction = svg.classList.contains('belle-working') ? 0.5 : this.walking ? rand(5, 8) : rand(2.5, 4.5);
     this.prevSway = 0; this.earVel = 0;
     this.x = this.walking ? rand(-60, 200) : 0;
     this.cursor = null;
@@ -83,7 +83,7 @@
     } else {
       this.nextAction -= dt;
       if (this.nextAction <= 0) {
-        var choice = pick(w ? WALK_STOPS : IDLE_PICKS);
+        var choice = pick(this.svg.classList.contains('belle-working') ? ['type', 'type', 'sniff', 'look'] : w ? WALK_STOPS : IDLE_PICKS);
         if (choice === 'look') { this.lookTarget = pick([-9, 9]); this.tiltTarget = rand(-7, 7); this.nextLook = rand(1.5, 2.5); this.nextAction = rand(2, 4); }
         else this.play(choice);
         act = this.action; p = 0;
@@ -131,6 +131,12 @@
       airY = -air * 26; bodyY = (crouch + land) * 3;
       armL = 10 + air * 45; armR = -10 - air * 45; lookT = 0; lookYT = -1.5 * air; tiltT = 0;
       wagSpeed = 14; wagAmp = 16; squint = air > 0.3;
+    } else if (act === 'type') {
+      var typing = bell(p, 0, 1);
+      headDY = 3 * typing; lookT = 3; lookYT = 3; tiltT = -3;
+      armL = 12 + Math.sin(p * 55) * 6 * typing;
+      armR = -12 - Math.cos(p * 55) * 6 * typing;
+      wagAmp = 4; bodyY -= Math.sin(p * 28) * 0.5 * typing;
     } else if (act === 'sniff') {
       var down = ease(bell(p, 0, 1) > 0 ? Math.min(1, Math.min(p, 1 - p) * 5) : 0);
       headDY = 9 * down; headRotX = (w ? 9 : 4) * down; lean = (w ? -12 : -4) * down;
@@ -237,6 +243,36 @@
     if ('IntersectionObserver' in window) {
       (function (r, node) { new IntersectionObserver(function (en) { r.visible = en[0].isIntersecting; }).observe(node); })(rig, rig.walker && rig.walker.parentElement ? rig.walker.parentElement : svgs[i]);
     }
+  }
+  var notebook = document.querySelector('.analyst-notebook');
+  if (notebook) {
+    var controls = notebook.querySelector('.notebook-controls');
+    controls.hidden = false;
+    function selectProject(button, react) {
+      var subject = button.dataset.notebook;
+      notebook.dataset.subject = subject;
+      controls.querySelectorAll('button').forEach(function (item) {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+      notebook.querySelectorAll('.notebook-panel').forEach(function (panel) {
+        panel.hidden = panel.id !== 'notebook-' + subject;
+        panel.classList.remove('notebook-selected');
+        if (!panel.hidden && react && motionAllowed()) {
+          void panel.offsetWidth;
+          panel.classList.add('notebook-selected');
+        }
+      });
+      var dog = notebook.querySelector('.belle-working');
+      if (react && motionAllowed() && dog && dog.belle) {
+        dog.belle.action = null;
+        dog.belle.play(subject === 'forecast' ? 'type' : subject === 'strategy' ? 'wave' : 'sniff');
+      }
+    }
+    controls.addEventListener('click', function (event) {
+      var button = event.target.closest('button[data-notebook]');
+      if (button) selectProject(button, true);
+    });
+    selectProject(controls.querySelector('button'), false);
   }
   window.addEventListener('pointermove', function (ev) {
     for (var j = 0; j < rigs.length; j++) rigs[j].cursor = { x: ev.clientX, y: ev.clientY };

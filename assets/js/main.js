@@ -69,6 +69,31 @@
     window.addEventListener("hashchange", openGalleryCategory);
   }
 
+  // Short page changes; leave modified clicks, downloads, and external links native.
+  var pageNavigationPending = false;
+  function pageMotionEnabled() {
+    return !motionPreference.matches && document.documentElement.dataset.motion !== "paused";
+  }
+  window.addEventListener("pageshow", function () {
+    pageNavigationPending = false;
+    document.body.classList.remove("page-leaving");
+    if (pageMotionEnabled()) document.body.classList.add("page-arriving");
+  });
+  document.addEventListener("click", function (event) {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || !pageMotionEnabled()) return;
+    var link = event.target.closest("a[href]");
+    if (!link || link.hasAttribute("download") || (link.target && link.target !== "_self")) return;
+    var destination = new URL(link.href, location.href);
+    if (destination.origin !== location.origin || !/\.html$|\/$/.test(destination.pathname)) return;
+    if (destination.pathname === location.pathname && destination.search === location.search) return;
+    if (pageNavigationPending) { event.preventDefault(); return; }
+    pageNavigationPending = true;
+    event.preventDefault();
+    document.body.classList.remove("page-arriving");
+    document.body.classList.add("page-leaving");
+    window.setTimeout(function () { location.assign(destination.href); }, 130);
+  });
+
   // Mobile menu
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");

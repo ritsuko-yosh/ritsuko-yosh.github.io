@@ -546,3 +546,16 @@ html[data-motion="paused"] .reveal { opacity: 1; transform: none; }
 /* Medal-focused gallery cover; retain the original photo behind the link. */
 .achievement-race-photo { overflow: hidden; }
 .achievement-race-photo img { position: absolute; width: 370%; max-width: none; height: 370%; left: -126.9%; top: -210.6%; object-fit: fill; }
+
+/* Brief page transitions maintain a steady header and readable content. */
+@media (prefers-reduced-motion: no-preference) {
+ .page-arriving main { animation: portfolio-arrive .36s cubic-bezier(.2,.7,.2,1) both; }
+ .page-leaving main { animation: portfolio-leave .13s ease-out both; pointer-events: none; }
+ .notebook-panel.notebook-selected { animation: notebook-select .28s ease-out both; }
+}
+@keyframes portfolio-arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes portfolio-leave { from { opacity: 1; } to { opacity: 0; transform: translateY(-4px); } }
+@keyframes notebook-select { from { opacity: .3; transform: translateX(7px); } to { opacity: 1; transform: translateX(0); } }
+/* Motion controls must never freeze a page while it is transparent. */
+html[data-motion="paused"] .page-arriving main, html[data-motion="paused"] .page-leaving main,
+html[data-motion="paused"] .notebook-selected { animation: none !important; opacity: 1; transform: none; }
