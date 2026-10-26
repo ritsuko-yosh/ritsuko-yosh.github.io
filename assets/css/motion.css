@@ -270,3 +270,6 @@ figure.case-art { position: relative; }
 .case-art figcaption { margin-top: 8px; font-size: .72rem; color: var(--muted); text-align: right; }
 .card-visual-illus { position: relative; }
 .illus-tag { position: absolute; right: 10px; bottom: 10px; padding: 2px 8px; border-radius: 999px; background: rgba(255, 255, 255, .86); color: var(--muted); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; }
+
+/* Reserve the gallery filter row before main.js reveals it, so the grid never jumps. */
+html.js .achievement-filters[hidden] { display: flex; visibility: hidden; }
