@@ -2,25 +2,54 @@
 (function () {
   "use strict";
 
-  // A brief greeting; never swap or distort Belle's drawing.
-  var motionToggle = document.querySelector(".motion-toggle");
+  // Motion state: one source of truth for every page.
+  // The visitor's choice persists across pages (localStorage, when available);
+  // the operating system's reduced-motion setting always wins.
   var motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var STORE_KEY = "ry-motion";
   var motionPaused = false;
+  try { motionPaused = localStorage.getItem(STORE_KEY) === "paused"; } catch (e) {}
+
+  // A compact control in the header, so motion can be paused from the first screen of any page.
+  var headerInner = document.querySelector(".header-inner");
+  var navToggle = document.querySelector(".nav-toggle");
+  if (headerInner && !document.querySelector(".motion-switch")) {
+    var tools = document.createElement("div");
+    tools.className = "header-tools";
+    var sw = document.createElement("button");
+    sw.type = "button";
+    sw.className = "motion-switch";
+    sw.innerHTML = '<span class="motion-switch-icon" aria-hidden="true"></span><span class="motion-switch-label">Pause motion</span>';
+    tools.appendChild(sw);
+    var navEl = document.getElementById("site-nav");
+    // Keep DOM order brand, nav, tools so keyboard order matches the visual order.
+    if (navEl && navEl.parentNode === headerInner) headerInner.insertBefore(tools, navEl.nextSibling);
+    else headerInner.appendChild(tools);
+    if (navToggle) tools.appendChild(navToggle);
+  }
+  var motionToggles = document.querySelectorAll(".motion-toggle, .motion-switch");
+
   function updateMotion() {
     var reduced = motionPreference.matches;
-    document.documentElement.dataset.motion = reduced || motionPaused ? "paused" : "playing";
-    if (motionToggle) {
-      motionToggle.hidden = reduced;
-      motionToggle.setAttribute("aria-pressed", String(motionPaused));
-      motionToggle.textContent = motionPaused ? "Resume motion" : "Pause motion";
-    }
+    var state = reduced || motionPaused ? "paused" : "playing";
+    document.documentElement.dataset.motion = state;
+    motionToggles.forEach(function (button) {
+      button.hidden = reduced;
+      button.setAttribute("aria-pressed", String(motionPaused));
+      var label = motionPaused ? "Resume motion" : "Pause motion";
+      var text = button.querySelector(".motion-switch-label");
+      if (text) text.textContent = label;
+      else button.textContent = label;
+    });
+    document.dispatchEvent(new CustomEvent("motionchange", { detail: { state: state } }));
   }
-  if (motionToggle) {
-    motionToggle.addEventListener("click", function () {
+  motionToggles.forEach(function (button) {
+    button.addEventListener("click", function () {
       motionPaused = !motionPaused;
+      try { localStorage.setItem(STORE_KEY, motionPaused ? "paused" : "playing"); } catch (e) {}
       updateMotion();
     });
-  }
+  });
   motionPreference.addEventListener("change", updateMotion);
   updateMotion();
   var trail = document.querySelector(".belle-trail");

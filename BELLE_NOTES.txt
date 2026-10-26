@@ -1,1 +1,24 @@
-Belle artwork: original hand-drawn poses supplied by Ritsuko. Homepage uses the two poses as a simple alternating walking animation, plus a gentle greeting by the original profile portrait. The images were extracted from white-background screenshots and made transparent. To refine walking animation, add more drawn poses later. Other project and resume pages preserved. Upload the CONTENTS of site/ to the GitHub Pages repository root.
+Belle: original character by Ritsuko, drawn as an SVG rig (inline in index.html).
+assets/js/belle.js animates the rig; the drawing itself is never altered.
+
+Where she appears (homepage only)
+1. Hero, beside the portrait (class belle-idle belle-portrait). Breathes, blinks, looks toward
+   the pointer, occasionally waves, sniffs, wiggles or naps. Waves when hovered (hover devices only).
+   Click, tap, Enter or Space: heart pops up and a short speech bubble appears.
+   Greets once per browser session with "Hi! I'm Belle." (motion.js).
+2. Analyst notebook (belle-working). Types, waves or sniffs when a notebook tab is chosen.
+3. Walk strip above the contact band (belle-walking inside .belle-walk data-walk="once").
+   When the strip scrolls into view she walks in, stops at data-stop (0.8 = 80% of the content
+   width, above "Get in touch"), then waves and stays idle. Decorative and out of the tab order.
+
+Motion rules
+- Everything stops when the visitor presses Pause motion (header, every page; remembered across pages)
+  or when the device has reduced motion turned on. The walk strip is hidden with reduced motion.
+- Animation only runs while she is on screen and the tab is visible.
+
+Unused assets kept in the repo (not loaded by any page): assets/images/belle-pose-1.png,
+belle-pose-2.png (earlier hand-drawn poses), baby-panda/baby-seal/little-panda/little-seal SVGs.
+
+New artwork that would improve her (please draw rather than generate):
+- A side-view walk cycle (4 to 6 frames) and a sitting pose in the same line weight and palette,
+  if you want a truer side walk than the current front-facing rig.
