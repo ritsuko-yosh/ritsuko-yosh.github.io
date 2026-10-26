@@ -559,3 +559,19 @@ html[data-motion="paused"] .reveal { opacity: 1; transform: none; }
 /* Motion controls must never freeze a page while it is transparent. */
 html[data-motion="paused"] .page-arriving main, html[data-motion="paused"] .page-leaving main,
 html[data-motion="paused"] .notebook-selected { animation: none !important; opacity: 1; transform: none; }
+
+/* Personal notebook monogram and editorial wordmark. */
+.brand { gap: 14px; padding-block: 8px; flex-shrink: 0; }
+.brand-mark { position: relative; isolation: isolate; width: 43px; height: 47px; flex-shrink: 0; border: 1px solid #bfae98; border-radius: 5px 11px 5px 5px; background: #fffaf0; color: #203650; box-shadow: -4px 4px 0 #ebdce2; transform: rotate(-5deg); font-family: Georgia, serif; font-size: 1.1rem; letter-spacing: -.07em; transition: transform .24s ease, box-shadow .24s ease; }
+.brand-mark::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1px; background: #d6c6af; }
+.brand-mark::after { content: ""; position: absolute; left: 13px; right: 8px; bottom: 9px; height: 1px; background: #bfae98; }
+.brand-mark > span { padding-bottom: 3px; }
+.brand-spark { position: absolute; width: 15px; height: 15px; right: -7px; top: -6px; color: #a17b4d; filter: drop-shadow(0 1px 0 #fffaf5); }
+.brand-wordmark { display: flex; flex-direction: column; gap: 3px; }
+.brand-name { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; letter-spacing: -.035em; line-height: 1.15; color: var(--navy); white-space: nowrap; }
+.brand-period { color: #ac8196; margin-left: 1px; }
+.brand-subtitle { font-size: .52rem; font-weight: 500; line-height: 1.4; letter-spacing: .1em; text-transform: uppercase; color: #766b70; white-space: nowrap; }
+.brand-subtitle > span { margin-inline: .22em; color: #a17b4d; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) { .brand:hover .brand-mark { transform: rotate(0) translateY(-1px); box-shadow: -3px 5px 0 #e7d3de; } }
+@media(max-width:600px) { .brand { gap: 12px; } .brand-name { font-size: 1.1rem; } .brand-mark { width: 38px; height: 42px; font-size: 1rem; } .brand-subtitle { font-size: .47rem; letter-spacing: .075em; } }
+@media(prefers-reduced-motion:reduce) { .brand-mark { transition: none; } }
