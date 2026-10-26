@@ -94,6 +94,13 @@
     window.setTimeout(function () { location.assign(destination.href); }, 130);
   });
 
+  var printResume = document.getElementById("print-resume");
+  if (printResume) {
+    printResume.hidden = false;
+    printResume.style.font = "inherit";
+    printResume.addEventListener("click", function () { window.print(); });
+  }
+
   // Mobile menu
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
