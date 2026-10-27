@@ -559,3 +559,8 @@ html[data-motion="paused"] .reveal { opacity: 1; transform: none; }
 /* Motion controls must never freeze a page while it is transparent. */
 html[data-motion="paused"] .page-arriving main, html[data-motion="paused"] .page-leaving main,
 html[data-motion="paused"] .notebook-selected { animation: none !important; opacity: 1; transform: none; }
+
+/* Curated achievement order keeps the strongest evidence visible first. */
+.achievement-order-note { margin: 20px 0 0; max-width: 680px; font-size: .84rem; line-height: 1.65; color: var(--muted); }
+.achievement-item[data-featured="true"] { border-color: #c5af8c; box-shadow: 0 3px 12px #6b54260a; }
+.achievement-featured-label { align-self: flex-start; margin-bottom: 14px; padding: 4px 9px; border-radius: 4px; background: #f1e9dc; color: #725832; font-size: .65rem; font-weight: 600; letter-spacing: .045em; text-transform: uppercase; }
