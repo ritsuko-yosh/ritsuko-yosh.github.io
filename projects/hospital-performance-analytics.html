@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.classList.add("js")</script>
+<script>(function(d){d.classList.add("js");var p=false;try{p=localStorage.getItem("ry-motion")==="paused"}catch(e){}d.dataset.motion=(p||matchMedia("(prefers-reduced-motion: reduce)").matches)?"paused":"playing"})(document.documentElement)</script>
 <title>Hospital Performance Analytics | Case Study | Ritsuko Yoshida</title>
 <meta name="description" content="Statistical analysis and PCA on more than 100,000 healthcare records to find what drives hospital performance and quality outcomes.">
 <meta name="author" content="Ritsuko Yoshida">
@@ -19,9 +19,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&amp;display=swap">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20261026-clean">
-<script defer src="../assets/js/main.js?v=20261023-page-motion"></script>
-<link rel="stylesheet" href="../assets/css/brand.css?v=20261026-clean">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20261026-motion">
+<script defer src="../assets/js/main.js?v=20261026-motion"></script>
+<script defer src="../assets/js/motion.js?v=20261026-motion"></script>
+<link rel="stylesheet" href="../assets/css/brand.css?v=20261026-motion">
+<link rel="stylesheet" href="../assets/css/motion.css?v=20261026-motion">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -40,7 +42,7 @@
   </div>
 </header>
 <main id="main">
-<div class="case-art"><img src="../assets/images/hospital-performance-analytics.svg" alt="" loading="eager"></div>
+<figure class="case-art"><img src="../assets/images/hospital-performance-analytics.svg" alt="" loading="eager"><figcaption>Decorative illustration, not project data.</figcaption></figure>
 <section class="page-hero cs-hero"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="../projects.html">Projects</a> <span aria-hidden="true">/</span> <span>Hospital Performance Analytics</span></nav>
   <ul class="chips"><li>Analytics</li></ul>

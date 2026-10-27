@@ -34,6 +34,10 @@
     this.svg = svg;
     this.walking = svg.classList.contains('belle-walking');
     this.walker = this.walking ? svg.closest('.belle-walk') : null;
+    // data-walk="once": wait for start(), walk in from the left, stop at data-stop (0 to 1), then stay idle.
+    this.walkOnce = !!(this.walker && this.walker.dataset.walk === 'once');
+    this.started = !this.walkOnce; this.arrived = false;
+    this.stopAt = this.walkOnce ? parseFloat(this.walker.dataset.stop || '0.7') : 1;
     this.el = {
       bob: q('.b-bob'), head: q('.b-head'), face: q('.b-face'), eyes: q('.b-eyes'),
       collar: q('.b-collar'), tag: q('.b-tag'), earL: q('.b-ear-l'), earR: q('.b-ear-r'),
@@ -52,21 +56,25 @@
     this.action = null; this.actionT = 0;
     this.nextAction = svg.classList.contains('belle-working') ? 0.5 : this.walking ? rand(5, 8) : rand(2.5, 4.5);
     this.prevSway = 0; this.earVel = 0;
-    this.x = this.walking ? rand(-60, 200) : 0;
+    this.x = this.walkOnce ? -110 : this.walking ? rand(-60, 200) : 0;
     this.cursor = null;
     this.visible = true;
     var self = this;
+    // Decorative copies (inside an aria-hidden container) stay out of the tab order.
+    if (svg.parentElement && svg.parentElement.closest('[aria-hidden="true"]')) return;
     svg.removeAttribute('aria-hidden');
     svg.setAttribute('role', 'button');
     svg.setAttribute('tabindex', '0');
     svg.setAttribute('focusable', 'true');
-    svg.setAttribute('aria-label', 'Animate the dog illustration');
+    svg.setAttribute('aria-label', svg.getAttribute('data-label') || 'Belle, my illustrated dog. Press to see her react');
     function activate() { if (motionAllowed()) self.play('heart'); }
     svg.addEventListener('click', activate);
     svg.addEventListener('keydown', function (event) {
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(); }
     });
   }
+
+  Rig.prototype.start = function () { this.started = true; this.nextAction = 99; };
 
   Rig.prototype.play = function (name) {
     if (!ACTIONS[name]) return;
@@ -80,21 +88,24 @@
     if (act) {
       this.actionT += dt; p = this.actionT / ACTIONS[act];
       if (p >= 1) { this.action = act = null; p = 0; this.nextAction = w ? rand(5, 9) : rand(2.5, 5); }
+      if (this.walkOnce && !this.started) { this.nextAction = 1; }
     } else {
       this.nextAction -= dt;
-      if (this.nextAction <= 0) {
-        var choice = pick(this.svg.classList.contains('belle-working') ? ['type', 'type', 'sniff', 'look'] : w ? WALK_STOPS : IDLE_PICKS);
+      if (this.nextAction <= 0 && this.queued) { this.play(this.queued); this.queued = null; act = this.action; p = 0; }
+      else if (this.nextAction <= 0) {
+        var choice = pick(this.svg.classList.contains('belle-working') ? ['type', 'type', 'sniff', 'look'] : strolling ? WALK_STOPS : IDLE_PICKS);
         if (choice === 'look') { this.lookTarget = pick([-9, 9]); this.tiltTarget = rand(-7, 7); this.nextLook = rand(1.5, 2.5); this.nextAction = rand(2, 4); }
         else this.play(choice);
         act = this.action; p = 0;
       }
     }
-    var moving = w && !act;
+    var strolling = w && this.started && !this.arrived;
+    var moving = strolling && !act;
 
     // where she looks: cursor first, then her own wandering
     this.nextLook -= dt;
     if (this.nextLook <= 0) {
-      if (w) { var r = Math.random(); this.lookTarget = r < 0.25 ? 0 : r < 0.4 ? 4 : 8; this.lookYTarget = rand(-0.5, 1.5); this.tiltTarget = this.lookTarget === 0 ? rand(-5, 5) : rand(-1.5, 2); this.nextLook = rand(2, 5); }
+      if (strolling) { var r = Math.random(); this.lookTarget = r < 0.25 ? 0 : r < 0.4 ? 4 : 8; this.lookYTarget = rand(-0.5, 1.5); this.tiltTarget = this.lookTarget === 0 ? rand(-5, 5) : rand(-1.5, 2); this.nextLook = rand(2, 5); }
       else { this.lookTarget = pick([-6, -3, 0, 0, 3, 6]); this.lookYTarget = rand(-2, 1.5); this.tiltTarget = rand(-5, 5) * (Math.random() < 0.5 ? 0.3 : 1); this.nextLook = rand(1.2, 3.8); }
     }
     var lookT = this.lookTarget, lookYT = this.lookYTarget, tiltT = this.tiltTarget;
@@ -106,7 +117,7 @@
 
     // base rhythm
     var up, sway, sq, lean, stepL = 0, stepR = 0, depthL = 0, depthR = 0, armDrive, armL = 0, armR = 0;
-    var bodyY, airY = 0, headDY = 0, headRotX = 0, eyes = 1, wagSpeed = w ? 9 : 5, wagAmp = w ? 12 : 7, squint = false;
+    var bodyY, airY = 0, headDY = 0, headRotX = 0, eyes = 1, wagSpeed = moving ? 9 : 5, wagAmp = moving ? 12 : 7, squint = false;
     if (moving) {
       this.speed += (rand(0.92, 1.08) - this.speed) * 0.01;
       this.phase += dt * 2 * Math.PI / (1.05 / this.speed);
@@ -226,7 +237,14 @@
     }
 
     // travel along the strip
-    if (this.walker) {
+    if (this.walker && this.walkOnce) {
+      var WW = this.walker.parentElement ? this.walker.parentElement.clientWidth : 800;
+      var stopX = Math.max(0, WW * this.stopAt - this.walker.offsetWidth / 2);
+      if (!this.started) this.x = Math.max(-110, stopX - 360);
+      if (moving) this.x += dt * 46 * this.speed;
+      if (!this.arrived && this.x >= stopX) { this.x = stopX; this.arrived = true; this.lookTarget = 0; this.tiltTarget = 0; this.nextAction = 0.6; this.queued = 'wave'; }
+      this.walker.style.transform = 'translate(' + f(this.x) + 'px,0)';
+    } else if (this.walker) {
       var W = this.walker.parentElement ? this.walker.parentElement.clientWidth : 800;
       if (moving) this.x += dt * 40 * this.speed;
       if (this.x > W + 20) this.x = -120;
