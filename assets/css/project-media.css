@@ -8,3 +8,17 @@
 .case-art-evidence figcaption { text-align: left; font-size: .8rem; line-height: 1.65; padding-top: 4px; }
 .case-art-evidence figcaption a { white-space: nowrap; }
 @media (max-width: 600px) { .card-visual.project-cover { padding: 8px; } .project-extract-label { font-size: .58rem; } .case-art-evidence figcaption { font-size: .75rem; } }
+
+/* Supplied quarterly results, with a contained mobile scroll area. */
+.cs-body { min-width: 0; }
+.forecast-results { width: 100%; overflow-x: auto; margin: 24px 0 16px; border: 1px solid var(--line); border-radius: 8px; }
+.forecast-results table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.forecast-results caption { padding: 14px; text-align: left; font-weight: 600; color: var(--navy); }
+.forecast-results th, .forecast-results td { padding: 12px 14px; text-align: right; border-top: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.forecast-results th:first-child { text-align: left; }
+.forecast-results thead { background: #f0ece7; }
+.forecast-source { font-size: .8rem; color: var(--muted); }
+@media (max-width: 600px) {
+ .forecast-results table { font-size: .78rem; }
+ .forecast-results th, .forecast-results td { padding: 10px 8px; }
+}

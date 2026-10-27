@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(d){d.classList.add("js");var p=false;try{p=localStorage.getItem("ry-motion")==="paused"}catch(e){}d.dataset.motion=(p||matchMedia("(prefers-reduced-motion: reduce)").matches)?"paused":"playing"})(document.documentElement)</script>
 <title>Hospital Performance Analytics | Case Study | Ritsuko Yoshida</title>
-<meta name="description" content="Statistical analysis and PCA on more than 100,000 healthcare records to find what drives hospital performance and quality outcomes.">
+<meta name="description" content="PCA of more than 100,000 healthcare records. Larger, higher revenue hospitals did not consistently earn better patient experience ratings.">
 <meta name="author" content="Ritsuko Yoshida">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ritsuko-yosh.github.io/projects/hospital-performance-analytics.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hospital Performance Analytics | Case Study | Ritsuko Yoshida">
-<meta property="og:description" content="Statistical analysis and PCA on more than 100,000 healthcare records to find what drives hospital performance and quality outcomes.">
+<meta property="og:description" content="PCA of more than 100,000 healthcare records. Larger, higher revenue hospitals did not consistently earn better patient experience ratings.">
 <meta property="og:url" content="https://ritsuko-yosh.github.io/projects/hospital-performance-analytics.html">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0f1f38">
@@ -24,7 +24,7 @@
 <script defer src="../assets/js/motion.js?v=20261026-motion"></script>
 <link rel="stylesheet" href="../assets/css/brand.css?v=20261026-motion">
 <link rel="stylesheet" href="../assets/css/motion.css?v=20261026-motion">
-<link rel="stylesheet" href="../assets/css/project-media.css?v=20261026-extracts">
+<link rel="stylesheet" href="../assets/css/project-media.css?v=20261027-resume-alignment">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -49,10 +49,10 @@
   <nav class="crumbs" aria-label="Breadcrumb"><a href="../projects.html">Projects</a> <span aria-hidden="true">/</span> <span>Hospital Performance Analytics</span></nav>
   <ul class="chips"><li>Analytics</li></ul>
   <h1>Hospital Performance Analytics</h1>
-  <p class="lead">Statistical analysis and PCA on more than 100,000 healthcare records to find what drives hospital performance and quality outcomes.</p>
+  <p class="lead">PCA of more than 100,000 healthcare records. Larger, higher revenue hospitals did not consistently earn better patient experience ratings.</p>
   <dl class="cs-meta">
     <div><dt>Type</dt><dd>Academic project, Business Intelligence and Insights</dd></div>
-    <div><dt>When</dt><dd>Nov to Dec 2024</dd></div>
+    <div><dt>When</dt><dd>Nov 2024 to Dec 2024</dd></div>
     <div><dt>Team</dt><dd>Academic project</dd></div>
   </dl>
   <ul class="facts"><li class="fact"><span class="fact-v">100K+</span><span class="fact-l">Healthcare records analyzed</span><span class="kind k-ctx">Context</span></li><li class="fact"><span class="fact-v">PCA</span><span class="fact-l">To reduce many metrics to a few underlying factors</span><span class="kind k-ctx">Context</span></li></ul>
@@ -60,13 +60,13 @@
 <section class="band"><div class="wrap cs-layout">
   <aside class="cs-toc" aria-label="On this page"><p class="side-h">On this page</p><ol><li><a href="#problem">The business problem</a></li><li><a href="#why">Why it mattered</a></li><li><a href="#role">My role</a></li><li><a href="#data">Data and tools</a></li><li><a href="#process">How I approached it</a></li><li><a href="#findings">Findings</a></li><li><a href="#implications">Business implications</a></li><li><a href="#limitations">Limitations</a></li><li><a href="#shows">What this shows</a></li></ol></aside>
   <article class="cs-body prose">
-    <section id="problem" class="cs-sec"><h2>The business problem</h2><p>What factors help explain differences in hospital performance and quality outcomes?</p></section><section id="why" class="cs-sec"><h2>Why it mattered</h2><p>Hospitals report dozens of overlapping metrics. Decision makers need to know which few underlying factors actually separate strong performers from weak ones.</p></section><section id="role" class="cs-sec"><h2>My role</h2><p>I worked on exploratory analysis, standardization and interpretation of principal components to explain relationships among hospital measures.</p></section><section id="data" class="cs-sec"><h2>Data and tools</h2><ul><li>More than 100,000 healthcare records containing financial, operational, and patient-experience measures; original dataset citation to be confirmed</li><li>Exploratory data analysis and Principal Component Analysis</li></ul></section><section id="process" class="cs-sec"><h2>How I approached it</h2><ul><li><strong>Explored the data</strong> with statistical methods to check distributions and relationships.</li><li><strong>Applied Principal Component Analysis</strong> to combine correlated variables into a small set of underlying performance factors.</li><li><strong>Interpreted the components</strong> and linked them to quality outcomes.</li><li><strong>Presented insights</strong> as part of the Business Intelligence and Insights course at Hult.</li></ul></section><section id="findings" class="cs-sec"><h2>Findings</h2><p>One interpreted component was associated with hospital scale and financial variables; another reflected patient experience and communication measures. These dimensions should not be treated as equivalent.</p></section><section id="implications" class="cs-sec"><h2>Business implications</h2><p>Use financial/scale indicators and patient-experience measures as complementary performance dimensions rather than assuming that strength in one guarantees strength in the other.</p></section><section id="limitations" class="cs-sec"><h2>Limitations</h2><ul><li>The analysis shows association, not cause.</li><li>Principal components are blends of variables, so they need careful naming before a non technical audience can use them.</li><li>Quality and patient experience measures can reflect expectations as well as care.</li></ul></section><section id="shows" class="cs-sec"><h2>What this shows</h2><p>Handling a large real world dataset, simplifying a messy set of metrics with PCA, and being careful about what correlation can support.</p></section>
+    <section id="problem" class="cs-sec"><h2>The business problem</h2><p>What factors help explain differences in hospital performance and quality outcomes?</p></section><section id="why" class="cs-sec"><h2>Why it mattered</h2><p>Hospitals report dozens of overlapping metrics. Decision makers need to know which few underlying factors actually separate strong performers from weak ones.</p></section><section id="role" class="cs-sec"><h2>My role</h2><p>I worked on exploratory analysis, standardization and interpretation of principal components to explain relationships among hospital measures.</p></section><section id="data" class="cs-sec"><h2>Data and tools</h2><ul><li>More than 100,000 healthcare records containing financial, operational, and patient-experience measures; original dataset citation to be confirmed</li><li>Exploratory data analysis and Principal Component Analysis</li></ul></section><section id="process" class="cs-sec"><h2>How I approached it</h2><ul><li><strong>Explored the data</strong> with statistical methods to check distributions and relationships.</li><li><strong>Applied Principal Component Analysis</strong> to combine correlated variables into a small set of underlying performance factors.</li><li><strong>Interpreted the components</strong> and linked them to quality outcomes.</li><li><strong>Presented insights</strong> as part of the Business Intelligence and Insights course at Hult.</li></ul></section><section id="findings" class="cs-sec"><h2>Findings</h2><p>Larger, higher revenue hospitals did not consistently earn better patient experience ratings. PCA helped separate financial and operational factors from patient experience factors.</p></section><section id="implications" class="cs-sec"><h2>Business implications</h2><p>Use financial/scale indicators and patient-experience measures as complementary performance dimensions rather than assuming that strength in one guarantees strength in the other.</p></section><section id="limitations" class="cs-sec"><h2>Limitations</h2><ul><li>The analysis shows association, not cause.</li><li>Principal components are blends of variables, so they need careful naming before a non technical audience can use them.</li><li>Quality and patient experience measures can reflect expectations as well as care.</li></ul></section><section id="shows" class="cs-sec"><h2>What this shows</h2><p>Handling a large real world dataset, simplifying a messy set of metrics with PCA, and being careful about what correlation can support.</p></section>
     
     <section class="cs-sec"><h2>Skills and keywords</h2><ul class="tags"><li>Business Intelligence</li><li>Statistical Analysis</li><li>Principal Component Analysis</li><li>Data Analysis</li><li>Healthcare</li></ul></section>
   </article>
 </div></section>
 <nav class="wrap pager" aria-label="More case studies">
-  <a href="../projects/paypal-revenue-forecast.html"><span class="muted">Previous</span>PayPal 12 Quarter Forecast</a>
+  <a href="../projects/paypal-revenue-forecast.html"><span class="muted">Previous</span>PayPal Financial Statement Forecast</a>
   <a href="../projects/posture-mate-business-case.html" class="next"><span class="muted">Next</span>Posture Mate: Path to Market</a>
 </nav>
 </main>
