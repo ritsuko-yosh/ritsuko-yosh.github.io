@@ -1,0 +1,171 @@
+/* Motion upgrade layer. Loaded after motion.css.
+   Everything hidden here is gated behind html.pm (set by motion-upgrade.js)
+   and the shared "playing" state, so paused or no JS shows the plain page. */
+:root {
+  --pm-ease: cubic-bezier(.16, 1, .3, 1);
+  --pm-ease-io: cubic-bezier(.65, 0, .35, 1);
+}
+
+/* ---------- 1. Hero: masked word reveal ---------- */
+.pm-w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
+.pm-w > span { display: inline-block; }
+html.pm[data-motion="playing"] .hero-kawaii h1,
+html.pm[data-motion="playing"] .hero-kawaii .kawaii-tagline { animation: none !important; opacity: 1 !important; transform: none !important; }
+html.pm[data-motion="playing"] .pm-w > span {
+  transform: translateY(108%);
+  animation: pm-up .95s var(--pm-ease) forwards;
+  animation-delay: calc(var(--w, 0) * 60ms + var(--pm-base, 80ms));
+}
+@keyframes pm-up { to { transform: none; } }
+
+/* Portrait: a vertical wipe instead of a fade */
+html.pm[data-motion="playing"] .hero-kawaii .kawaii-photo {
+  animation: pm-wipe 1.15s var(--pm-ease-io) .15s both !important;
+}
+html.pm[data-motion="playing"] .hero-kawaii .kawaii-photo img { animation: pm-settle 1.6s var(--pm-ease) .15s both; }
+@keyframes pm-wipe { from { clip-path: inset(100% 0 0 0 round 4px); } to { clip-path: inset(0 0 0 0 round 4px); } }
+@keyframes pm-settle { from { transform: scale(1.12); } to { transform: none; } }
+
+/* Hero blobs drift with scroll (uses translate so the existing drift keeps working) */
+html.pm[data-motion="playing"] .hero-kawaii .blob-one { translate: 0 calc(var(--pm-y, 0) * -0.12px); }
+html.pm[data-motion="playing"] .hero-kawaii .blob-two { translate: 0 calc(var(--pm-y, 0) * 0.08px); }
+
+/* ---------- 2. Project visuals open up as they arrive ---------- */
+html.pm[data-motion="playing"] #featured-work .card-visual {
+  clip-path: inset(calc((1 - var(--pm-p, 1)) * 9%) calc((1 - var(--pm-p, 1)) * 6%) round 4px);
+  will-change: clip-path;
+}
+html.pm[data-motion="playing"] #featured-work .card .card-visual img,
+html.pm[data-motion="playing"] #featured-work .card .card-visual.project-cover img {
+  transform: scale(calc(1.1 - var(--pm-p, 1) * .1)) !important;
+  transition: none;
+}
+
+/* ---------- 3. Cards: tactile tilt on fine pointers ---------- */
+@media (hover: hover) and (pointer: fine) {
+  html.pm[data-motion="playing"] #featured-work .card { transition: translate .45s var(--pm-ease), box-shadow .45s var(--pm-ease); }
+  html.pm[data-motion="playing"] #featured-work .card:hover { translate: 0 -4px; box-shadow: 0 2px 4px rgba(15,31,56,.05), 0 18px 40px rgba(15,31,56,.10); }
+  html.pm[data-motion="playing"] #featured-work .card-visual {
+    transform: perspective(900px) rotateX(var(--pm-rx, 0deg)) rotateY(var(--pm-ry, 0deg));
+    transition: transform .5s var(--pm-ease);
+  }
+  html.pm[data-motion="playing"] #featured-work .card.pm-tilting .card-visual { transition: transform .12s linear; }
+}
+/* Title underline draws in on hover or focus */
+#featured-work .card-title a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s var(--pm-ease); text-decoration: none; }
+#featured-work .card:hover .card-title a, #featured-work .card-title a:focus-visible { background-size: 100% 1px; }
+.card-cta { display: inline-flex; gap: 6px; }
+.card-cta::after { content: "→"; transition: transform .35s var(--pm-ease); }
+.card:hover .card-cta::after { transform: translateX(4px); }
+.btn > span[aria-hidden="true"] { display: inline-block; transition: transform .35s var(--pm-ease); }
+.btn:hover > span[aria-hidden="true"] { transform: translateX(3px); }
+
+/* ---------- 4. Sticky data story (PayPal forecast) ---------- */
+.pm-story { padding: 96px 0; border-top: 1px solid var(--line); }
+.pm-story-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 56px; align-items: start; }
+.pm-story-visual { margin: 0; position: sticky; top: 104px; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 22px 22px 14px; box-shadow: var(--shadow); }
+.pm-story-visual figcaption { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .78rem; color: var(--muted); margin-top: 6px; }
+.pm-key { display: inline-flex; align-items: center; gap: 7px; }
+.pm-key i { display: inline-block; width: 14px; height: 2px; background: var(--brass); }
+.pm-key i.sq { width: 9px; height: 9px; background: var(--navy); border-radius: 1.5px; }
+.pm-axis-note { flex-basis: 100%; }
+.pm-badge { position: absolute; top: 18px; right: 20px; background: var(--navy); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: .78rem; font-weight: 500; }
+.pm-chart { display: block; width: 100%; height: auto; font-family: var(--sans); }
+.pm-grid line { stroke: var(--line); stroke-width: 1; }
+.pm-grid .pm-base { stroke: #c9c3b6; }
+.pm-grid text { fill: var(--muted); font-size: 12px; }
+.pm-fc { fill: none; stroke: var(--brass); stroke-width: 2.25; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.pm-fc-dots circle { fill: #fff; stroke: var(--brass); stroke-width: 2; }
+.pm-rep rect { fill: var(--navy); }
+.pm-err line { stroke: var(--k-result); stroke-width: 2; }
+.pm-err text { fill: var(--k-result); font-size: 12px; font-weight: 600; }
+.pm-steps { list-style: none; margin: 0; padding: 0; }
+.pm-step { padding: 28px 0 28px 22px; border-left: 2px solid var(--line); transition: border-color .4s var(--pm-ease); }
+.pm-step + .pm-step { margin-top: 0; }
+.pm-step .pm-n { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brass); margin-bottom: 8px; font-weight: 600; }
+.pm-step h3 { font-family: var(--serif); font-size: 1.35rem; color: var(--navy); margin: 0 0 8px; line-height: 1.25; }
+.pm-step p { margin: 0; color: var(--charcoal); }
+.pm-story-foot { margin-top: 28px; font-size: .9rem; }
+
+/* Step states only exist with JS and motion playing. */
+html.pm[data-motion="playing"] .pm-steps .pm-step { opacity: .38; transition: opacity .5s var(--pm-ease), border-color .5s var(--pm-ease); }
+html.pm[data-motion="playing"] .pm-steps .pm-step.is-active { opacity: 1; border-left-color: var(--navy); }
+html.pm[data-motion="playing"] .pm-step:not(:last-child) { min-height: 48vh; }
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-fc { stroke-dashoffset: 1; transition: stroke-dashoffset 1.3s var(--pm-ease-io); }
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-fc-dots circle,
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-rep rect,
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-err line,
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-err text,
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-badge {
+  opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.4);
+  transition: opacity .45s var(--pm-ease), transform .55s var(--pm-ease);
+  transition-delay: calc(var(--i, 0) * 110ms);
+}
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-err line { transform: scaleY(0); }
+html.pm[data-motion="playing"] .pm-story [data-stage] .pm-badge { transform: translateY(-6px); }
+html.pm[data-motion="playing"] .pm-story [data-stage="2"] .pm-fc,
+html.pm[data-motion="playing"] .pm-story [data-stage="3"] .pm-fc,
+html.pm[data-motion="playing"] .pm-story [data-stage="4"] .pm-fc,
+html.pm[data-motion="playing"] .pm-story [data-stage="5"] .pm-fc { stroke-dashoffset: 0; }
+html.pm[data-motion="playing"] .pm-story :is([data-stage="2"],[data-stage="3"],[data-stage="4"],[data-stage="5"]) .pm-fc-dots circle,
+html.pm[data-motion="playing"] .pm-story :is([data-stage="3"],[data-stage="4"],[data-stage="5"]) .pm-rep rect,
+html.pm[data-motion="playing"] .pm-story :is([data-stage="4"],[data-stage="5"]) .pm-err line,
+html.pm[data-motion="playing"] .pm-story :is([data-stage="4"],[data-stage="5"]) .pm-err text,
+html.pm[data-motion="playing"] .pm-story :is([data-stage="4"],[data-stage="5"]) .pm-badge { opacity: 1; transform: none; }
+html.pm[data-motion="playing"] .pm-story [data-stage="5"] .pm-chart { opacity: .55; transition: opacity .5s; }
+
+@media (max-width: 860px) {
+  .pm-story { padding: 64px 0; }
+  .pm-story-grid { grid-template-columns: 1fr; gap: 20px; }
+  .pm-story-visual { top: 84px; z-index: 2; padding: 14px 14px 10px; }
+  html.pm[data-motion="playing"] .pm-step:not(:last-child) { min-height: 38vh; }
+  .pm-badge { top: 10px; right: 12px; }
+  .pm-axis-note { font-size: .7rem; }
+}
+
+/* ---------- 5. Belle farewell bubble ---------- */
+.pm-bye { position: absolute; left: 50%; bottom: 100%; translate: -50% -6px; white-space: nowrap; background: #fff; color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; font-size: .74rem; opacity: 0; transform: translateY(6px); transition: opacity .4s var(--pm-ease), transform .5s var(--pm-ease); pointer-events: none; }
+.pm-bye.is-on { opacity: 1; transform: none; }
+
+/* ---------- Preview label ---------- */
+
+/* ---------- Safety nets ---------- */
+html[data-motion="paused"] #featured-work .card-visual { clip-path: none !important; transform: none !important; }
+
+/* ================= Round 2: extra animations ================= */
+
+/* A. Section headings rise word by word as they arrive */
+html.pm[data-motion="playing"] .m-head > h2.pm-split,
+html.pm[data-motion="playing"] h2.pm-split { opacity: 1 !important; transform: none !important; }
+html.pm[data-motion="playing"] h2.pm-split:not(.pm-in) .pm-w > span { transform: translateY(108%); animation: none; }
+html.pm[data-motion="playing"] h2.pm-split.pm-in .pm-w > span { transform: translateY(108%); animation: pm-up .9s var(--pm-ease) forwards; animation-delay: calc(var(--w, 0) * 45ms); }
+/* Eyebrow rule draws in before the heading */
+html.pm .section-head .eyebrow { position: relative; }
+html.pm[data-motion="playing"] .pm-eyebrow-line::after { content: ""; display: inline-block; vertical-align: middle; width: 28px; height: 1px; margin-left: 10px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .8s var(--pm-ease) .1s; }
+html.pm[data-motion="playing"] .pm-eyebrow-line.pm-in::after { transform: scaleX(1); }
+
+/* B. Spotlight that follows the pointer on cards and stat pills */
+@media (hover: hover) and (pointer: fine) {
+  html.pm #featured-work .card, html.pm .kawaii-stats a { position: relative; isolation: isolate; }
+  html.pm #featured-work .card::before, html.pm .kawaii-stats a::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 2; pointer-events: none;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(184, 154, 106, .16), transparent 62%);
+    opacity: 0; transition: opacity .4s var(--pm-ease);
+  }
+  html.pm[data-motion="playing"] #featured-work .card:hover::before,
+  html.pm[data-motion="playing"] .kawaii-stats a:hover::before { opacity: 1; }
+}
+
+/* C. Magnetic call to action buttons (small pull, springs back) */
+html.pm .pm-mag { transition: translate .5s var(--pm-ease), background .2s, color .2s, border-color .2s, transform .2s var(--ease); }
+html.pm .pm-mag.pm-pulling { transition: translate .12s linear, background .2s, color .2s, border-color .2s; }
+
+/* D. Stat numbers count up once (final value is in the HTML) */
+.pm-count { font-variant-numeric: tabular-nums; }
+
+/* ---------- Belle can be picked up and moved ---------- */
+.belle-draggable { cursor: grab; touch-action: none; transform-origin: 50% 12%; }
+.belle-draggable.is-held { cursor: grabbing; z-index: 6; }
+.belle-draggable.is-held .b-shadow { opacity: 0; }
+.belle-draggable.is-homing { transition: translate .6s cubic-bezier(.34, 1.4, .64, 1); }
+.belle-draggable.is-held, .belle-draggable:focus:not(:focus-visible) { outline: none; }
